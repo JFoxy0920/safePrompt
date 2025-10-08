@@ -101,7 +101,7 @@ Status -> Feature\
 
 Clone the repo:
 ```
-git clone https://github.com/yourusername/safeprompt
+git clone https://github.com/JFoxy0920/safeprompt
 cd safeprompt
 ```
 
