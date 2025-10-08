@@ -1,6 +1,10 @@
-import { detectSensitive } from './detector.js';
+console.log("SafePrompt content script active!");
 
 const inputSelector = 'textarea'; // ChatGPT text area
+
+async function loadModuleAndRun() {
+  try {
+    const { monitorPrompts } = await import(chrome.runtime.getURL('src/module.js'))
 
 function hookPromptBox() {
   const inputBox = document.querySelector(inputSelector);
@@ -33,5 +37,5 @@ function clearWarning() {
   const banner = document.getElementById('safeprompt-banner');
   if (banner) banner.remove();
 }
-console.log("SafePrompt content script active!");
+
 hookPromptBox();
