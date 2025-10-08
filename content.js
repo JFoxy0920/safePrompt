@@ -33,5 +33,5 @@ function clearWarning() {
   const banner = document.getElementById('safeprompt-banner');
   if (banner) banner.remove();
 }
-
+console.log("SafePrompt content script active!");
 hookPromptBox();
