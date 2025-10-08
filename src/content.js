@@ -4,7 +4,7 @@ const inputSelector = 'textarea'; // ChatGPT text area
 
 async function loadModuleAndRun() {
   try {
-    const { monitorPrompts } = await import(chrome.runtime.getURL('src/detector.js'))
+    const { detectSensitive } = await import(chrome.runtime.getURL('src/detector.js'))
   
 
 function hookPromptBox() {
