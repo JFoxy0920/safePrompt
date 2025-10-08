@@ -27,7 +27,7 @@
         "https://gemini.google.com/*",
         "https://chatgpt.com/*"
       ],
-      "js": ["content.js", "detector.js"],
+      "js": ["src/content.js", "src/detector.js"],
       "run_at": "document_idle",
       "type": "module"
     }
