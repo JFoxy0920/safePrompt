@@ -11,22 +11,12 @@
   "web_accessible_resources":[
     {
       "resources": ["src/detector.js"],
-      "matches": [
-        "https://chat.openai.com/*",
-        "https://claude.ai/*",
-        "https://gemini.google.com/*",
-        "https://chatgpt.com/*"
-        ]
+      "matches": ["<all_urls>"],
       }
     ],
   "content_scripts": [
     {
-      "matches": [
-        "https://chat.openai.com/*",
-        "https://claude.ai/*",
-        "https://gemini.google.com/*",
-        "https://chatgpt.com/*"
-      ],
+      "matches": ["<all_urls>"],
       "js": ["src/content.js", "src/detector.js"],
       "run_at": "document_idle",
       "type": "module"
