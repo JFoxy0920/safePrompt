@@ -10,7 +10,7 @@
   },
   "web_accessible_resources":[
     {
-      "resources": ["src/module.js"],
+      "resources": ["src/detector.js"],
       "matches": [
         "https://chat.openai.com/*",
         "https://claude.ai/*",
