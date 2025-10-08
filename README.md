@@ -88,14 +88,14 @@ Popup UI built with simple HTML/CSS
 **No frameworks for maximal transparency**
 
 ## 🧩 Features (Current + Planned)
-Status	Feature/
-✅	    Popup toggle (Enable/Disable protection)/
-✅	    Local storage of user settings/
-✅	    Content script detection pipeline/
-🚧	    Custom detection rules (user-defined regex)/
-🚧	    Redaction preview before sending/
-🚧	    Export/import of detection settings/
-🚧	    Optional in-browser local AI classifier (WASM or quantized LLM)/
+Status	Feature\
+✅	    Popup toggle (Enable/Disable protection)\
+✅	    Local storage of user settings\
+✅	    Content script detection pipeline\
+🚧	    Custom detection rules (user-defined regex)\
+🚧	    Redaction preview before sending\
+🚧	    Export/import of detection settings\
+🚧	    Optional in-browser local AI classifier (WASM or quantized LLM)\
 
 ## 🧱 Installation (Developer Mode)
 
