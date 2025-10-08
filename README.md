@@ -1,4 +1,4 @@
-### 🛡️ **SafePrompt**
+# 🛡️ **SafePrompt**
 
 Local AI Prompt Security Extension
 
@@ -15,31 +15,31 @@ This is a privacy-first, open project built by a cybersecurity student with a pa
 
 ## ✨ Core Principles
 
-# Local-Only Analysis:
+### Local-Only Analysis:
 * All scanning happens in your browser — nothing leaves your device.
 * There are no servers, APIs, or third-party trackers.
 
-# User Empowerment:
+### User Empowerment:
 * SafePrompt does not block or modify content automatically.
 * It simply alerts you when something looks sensitive so you can make an informed choice.
 
-# Transparency:
+### Transparency:
 * Every line of code is open for review.
 * You can verify that no network calls are made and that detection logic runs locally.
 
-# Customizable:
+### Customizable:
 Users and teams can add their own detection rules (e.g., custom regex for internal code names or project terms).
 
 ## ⚙️ How It Works
 
-# When you open a page that includes an AI text box (like ChatGPT or Gemini):
+### When you open a page that includes an AI text box (like ChatGPT or Gemini):
 
 The content script listens for user input events.
 Before data is sent, SafePrompt checks your text for known risky patterns (e.g., "-----BEGIN PRIVATE KEY-----").
 If a match is detected, a local alert appears — offering to redact or cancel the message.
 The popup UI allows you to toggle protection or view what was detected.
 
-# SafePrompt runs entirely within Chrome’s extension sandbox using:
+### SafePrompt runs entirely within Chrome’s extension sandbox using:
 
 * Manifest V3
 * JavaScript for real-time scanning
@@ -48,7 +48,7 @@ The popup UI allows you to toggle protection or view what was detected.
 
 ## 🧠 Detection Philosophy
 
-# Rather than sending prompts to a server for classification, SafePrompt uses:
+### Rather than sending prompts to a server for classification, SafePrompt uses:
 
 * Lightweight regex detection for obvious secrets and identifiers
 * Optional entropy analysis for detecting keys or hashes
@@ -63,7 +63,7 @@ The popup UI allows you to toggle protection or view what was detected.
 * Background Service Worker	Facilitates settings + messaging	No network requests allowed
 * External APIs	None	All calls restricted by CSP policy
 
-# Network policy:
+### Network policy:
 SafePrompt’s manifest.json uses strict permissions and content_security_policy to ensure:
 
   "permissions": ["storage", "activeTab", "scripting"],
@@ -132,7 +132,7 @@ If you create a fork, please preserve the transparency and privacy-first princip
 The long-term goal is to make SafePrompt the “seatbelt” of AI chat —
 always on, invisible until needed, and protecting users without slowing them down.
 
-# Eventually, SafePrompt could expand to:
+### Eventually, SafePrompt could expand to:
 
 * Local team policies for enterprise users
 
