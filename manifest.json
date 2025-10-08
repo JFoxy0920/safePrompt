@@ -23,9 +23,9 @@
   "action": {
     "default_popup": "ui/popup.html",
     "default_icon": {
-      "16": "safeprompt_logo.png",
-      "48": "safeprompt_logo.png",
-      "128": "safeprompt_logo.png"
+      "16": "icons/safeprompt_logo.png",
+      "48": "icons/safeprompt_logo.png",
+      "128": "icons/safeprompt_logo.png"
     }
   }
 }
