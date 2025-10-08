@@ -88,7 +88,7 @@ Popup UI built with simple HTML/CSS
 **No frameworks for maximal transparency**
 
 ## 🧩 Features (Current + Planned)
-Status  Feature\
+Status -> Feature\
  ✅  Popup toggle (Enable/Disable protection)\
  ✅  Local storage of user settings\
  ✅  Content script detection pipeline\
