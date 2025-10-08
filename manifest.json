@@ -16,7 +16,8 @@
         "https://claude.ai/*",
         "https://gemini.google.com/*",
         "https://chatgpt.com/*"
-        }
+        ]
+      }
     ],
   "content_scripts": [
     {
