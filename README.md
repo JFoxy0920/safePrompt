@@ -11,7 +11,7 @@ No cloud scanning.
 No telemetry.
 No storage of your input anywhere.
 
-This is a privacy-first, open project built by a cybersecurity student with a passion for secure and ethical AI adoption.
+**This is a privacy-first, open project built by a cybersecurity student with a passion for secure and ethical AI adoption.**
 
 ## ✨ Core Principles
 
@@ -85,7 +85,7 @@ Regex-based detection engine (detector.js)
 
 Popup UI built with simple HTML/CSS
 
-No frameworks for maximal transparency
+**No frameworks for maximal transparency**
 
 ## 🧩 Features (Current + Planned)
 Status	Feature
