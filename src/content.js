@@ -6,30 +6,13 @@ let detectSensitive;
 
 async function loadModuleAndRun() {
     try {
-        const detectorURL = chrome.runtime.getURL('src/detector.js');
-        const moduleScript = document.createElement('script');
-        moduleScript.type = 'module';
-        moduleScript.textContent = `
-            import { detectSensitive as ds } from "${detectorURL}";
-            window.__safePromptDetector = ds;        
-            console.log("Detector module loaded and attached to window.");
-        `;
-        (document.head || document.documentElement).appendChild(moduleScript);
-
-        await new Promise(resolve => {
-            const check = setInterval(() => {
-                if (window.__safePromptDetector) {
-                    detectSensitive = window.__safePromptDetector;
-                    clearInterval(check);
-                    resolve();
-                }
-            }, 50);
-        });
+        const detectorModule = await import(chrome.runtime.getURL('src/detector.js'));
+        detectSensitive = detectorModule.detectSensitive; 
         
         hookPromptBox();
 
     } catch (error) {
-        console.error("SafePrompt Error: Failed to load detector module or run logic:", error);
+        console.error("SafePrompt Error: Failed to load detector module:", error);
     }
 }
 
