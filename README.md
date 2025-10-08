@@ -105,15 +105,15 @@ git clone https://github.com/yourusername/safeprompt
 cd safeprompt
 ```
 
-*Open Chrome → chrome://extensions/*
+Open Chrome → chrome://extensions/
 
-*Enable Developer mode*
+Enable Developer mode
 
-*Click Load unpacked*
+Click Load unpacked
 
-*Select the project folder*
+Select the project folder
 
-*Click the SafePrompt icon → test your popup*
+Click the SafePrompt icon → test your popup
 
 ## 🧑‍💻 About the Creator
 
