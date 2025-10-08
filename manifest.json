@@ -8,6 +8,16 @@
   "background": {
     "service_worker": "background.js"
   },
+  "web_accessible_resources":[
+    {
+      "resources": ["src/module.js"],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://chatgpt.com/*"
+      }
+    ],
   "content_scripts": [
     {
       "matches": [
