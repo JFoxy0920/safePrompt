@@ -65,13 +65,13 @@ The popup UI allows you to toggle protection or view what was detected.
 
 ### Network policy:
 SafePrompt’s manifest.json uses strict permissions and content_security_policy to ensure:
-'''
+```
 "permissions": ["storage", "activeTab", "scripting"],
 "host_permissions": ["<all_urls>"],
 "content_security_policy": {
   "extension_pages": "script-src 'self'; object-src 'self';"
 }
-'''
+```
 
 **No external scripts. No fetch requests. No hidden analytics.**
 
@@ -100,10 +100,10 @@ Status -> Feature\
 ## 🧱 Installation (Developer Mode)
 
 Clone the repo:
-'''
+```
 git clone https://github.com/yourusername/safeprompt
 cd safeprompt
-'''
+```
 
 *Open Chrome → chrome://extensions/*
 
