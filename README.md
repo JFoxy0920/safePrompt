@@ -1,4 +1,4 @@
-### 🛡️ SafePrompt
+### 🛡️ **SafePrompt**
 
 Local AI Prompt Security Extension
 
