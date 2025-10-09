@@ -26,8 +26,7 @@ function hookPromptBox() {
 
     inputBox.addEventListener('input', () => {
         const text = inputBox.value;
-        
-        // Ensure detectSensitive is loaded before calling it
+
         if (!detectSensitive) {
             console.error("Detector function is not yet loaded!");
             return;
