@@ -1,5 +1,3 @@
-console.log("SafePrompt content script active!");
-
 const inputSelector = 'textarea';
 
 let detectSensitive;
@@ -52,7 +50,7 @@ function showWarning(inputElement, findings) {
         banner.style.cssText = "background: #d32f2f; color: white; padding: 6px 12px; border-radius: 4px; margin-top: 4px; font-weight: bold; font-size: 13px; z-index: 9999;";
         parent.insertBefore(banner, inputElement.nextSibling);
     }
-    
+    console.log("Errors:", findings);
     banner.textContent = `⚠️ LEAK ALERT: ${findings.length} issue(s) detected. Details: ${findings.join(' | ')}`;
 }
 
