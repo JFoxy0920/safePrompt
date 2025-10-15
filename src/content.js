@@ -1,7 +1,14 @@
-const host = document.querySelector('some-host-element');
-const shadowRoot = host?.shadowRoot;
-const inputBox = shadowRoot?.querySelector('textarea');
-
+document.querySelectorAll('textarea, input[type="text"], input[type="search"]')
+document.querySelectorAll('textarea, input[type="text"], input[type="search"]').forEach((el, i) => {
+  console.log(`Input ${i}:`, {
+    tag: el.tagName,
+    name: el.getAttribute('name'),
+    id: el.id,
+    class: el.className,
+    placeholder: el.getAttribute('placeholder'),
+    value: el.value
+  });
+});
 let detectSensitive;
 
 async function loadModuleAndRun() {
