@@ -94,8 +94,7 @@ Status -> Feature\
  ✅  Content script detection pipeline\
  🚧  Custom detection rules (user-defined regex)\
  🚧  Redaction preview before sending\
- 🚧  Export/import of detection settings\
- 🚧  Optional in-browser local AI classifier (WASM or quantized LLM)\
+ 🚧  Optional in-browser local AI classifier (WASM or quantized LLM)
 
 ## Installation (Developer Mode)
 
