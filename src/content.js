@@ -13,6 +13,7 @@ async function loadModuleAndRun() {
         console.log("Detector module loaded:", detectorModule);
         
         hookPromptBox();
+        addDebugToggle();
 
     } catch (error) {
         console.error("SafePrompt Error: Failed to load detector module:", error);
@@ -27,17 +28,47 @@ function hookPromptBox() {
         return;
     }
 
-    ['input', 'change', 'keyup'].forEach(event => {
-      inputBox.addEventListener(event, () => {
+    inputBox.addEventListener('input', () => {
         const text = inputBox.value;
-        if (!detectSensitive){
-            return;
-        }
-        const findings = detectSensitive(text);
-        findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
-      });
+        if (DEBUG_MODE) console.log(`[DEBUG] Input text: "${text}"`);
+            if (!detectSensitive) {
+                console.error("Detector function is not yet loaded!");
+                    return;}
+      const findings = detectSensitive(text);
+      if (DEBUG_MODE) console.log(`[DEBUG] Findings:`, findings);
+          findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
     });
     console.log("Prompt box hooked successfully.");
+}
+
+function addDebugToggle() {
+  const toggleContainer = document.createElement('div');
+  toggleContainer.style.cssText = `
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    z-index: 9999;
+  `;
+
+  toggleContainer.innerHTML = `
+    <label>
+      <input type="checkbox" id="debug-toggle" />
+      Debug Mode
+    </label>
+  `;
+
+  document.body.appendChild(toggleContainer);
+
+  const checkbox = document.getElementById('debug-toggle');
+  checkbox.addEventListener('change', (e) => {
+    window.DEBUG_MODE = e.target.checked;
+    console.log(`[DEBUG] Debug mode is now ${window.DEBUG_MODE ? 'ON' : 'OFF'}`);
+  });
 }
 
 function showWarning(inputElement, findings) {
@@ -52,6 +83,19 @@ function showWarning(inputElement, findings) {
     }
     console.log("Errors:", findings);
     banner.textContent = `⚠️ LEAK ALERT: ${findings.length} issue(s) detected. Details: ${findings.join(' | ')}`;
+}
+
+function showDebugBanner(message) {
+  if (!DEBUG_MODE) return;
+
+  let banner = document.getElementById('debug-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'debug-banner';
+    banner.style.cssText = "background: #1976d2; color: white; padding: 4px 8px; font-size: 12px; margin-top: 4px;";
+    document.body.appendChild(banner);
+  }
+  banner.textContent = `DEBUG: ${message}`;
 }
 
 function clearWarning(inputElement) {
