@@ -27,7 +27,9 @@ function hookPromptBox() {
     ['input', 'change', 'keyup'].forEach(event => {
       inputBox.addEventListener(event, () => {
         const text = inputBox.value;
-        if (!detectSensitive) return;
+        if (!detectSensitive){
+            return;
+        }
         const findings = detectSensitive(text);
         findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
       });
