@@ -1,3 +1,4 @@
+const inputSelector = 'textarea[placeholder="Ask Anything"]';
 document.querySelectorAll('textarea, input[type="text"], input[type="search"]')
 document.querySelectorAll('textarea, input[type="text"], input[type="search"]').forEach((el, i) => {
   console.log(`Input ${i}:`, {
@@ -9,7 +10,7 @@ document.querySelectorAll('textarea, input[type="text"], input[type="search"]').
     value: el.value
   });
 });
-const inputSelector = 'textarea[placeholder="Ask Anything"]';
+
 
 async function loadModuleAndRun() {
     window.DEBUG_MODE = true; // Set to false in production
