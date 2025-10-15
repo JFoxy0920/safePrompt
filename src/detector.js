@@ -1,17 +1,25 @@
 export function detectSensitive(text) {
   const rules = [
     { name: 'API Key', regex: /sk-[A-Za-z0-9]{32,}/ },
-    { name: 'Email', regex: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/ },
-    { name: 'Private Key', regex: /-----BEGIN (RSA|DSA|EC)? PRIVATE KEY-----/ },
-    { name: 'SSN', regex: /\b\d{3}-\d{2}-\d{4}\b/ },
-    { name: 'test', regex: /e/ }
+    { name: 'Email', regex: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/i },
+    { name: 'Private Key', regex: /-----BEGIN (RSA|DSA|EC)? PRIVATE KEY-----/i },
+    { name: 'SSN', regex: /\b\d{3}-\d{2}-\d{4}\b/ }
   ];
+
   const findings = [];
+
   for (const rule of rules) {
-    if (rule.regex.test(text)) {
+    const match = text.match(rule.regex);
+    if (match) {
       findings.push(rule.name);
+      if (DEBUG_MODE) {
+        console.log(`[DEBUG] Rule matched: ${rule.name}`);
+        console.log(`[DEBUG] Matched value:`, match[0]);
+      }
+    } else if (DEBUG_MODE) {
+      console.log(`[DEBUG] Rule not matched: ${rule.name}`);
     }
   }
-  console.log("Testing text:", text);
+
   return findings;
 }
