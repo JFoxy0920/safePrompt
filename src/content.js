@@ -41,7 +41,6 @@ function hookPromptBox() {
     console.log("Prompt box hooked successfully.");
     const id = inputBox.id;
     const className = inputBox.className;
-    const 
     console.log("Textarea ID:", id);
     console.log("Textarea class:", className);
 }
