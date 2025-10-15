@@ -12,13 +12,13 @@ export function detectSensitive(text) {
     const match = text.match(rule.regex);
     if (match) {
       findings.push(rule.name);
-      if (DEBUG_MODE) {
+      if (window.DEBUG_MODE) {
         console.log(`[DEBUG] Rule matched: ${rule.name}`);
         console.log(`[DEBUG] Matched value:`, match[0]);
+        }
+      } else if (window.DEBUG_MODE) {
+        console.log(`[DEBUG] Rule not matched: ${rule.name}`);
       }
-    } else if (DEBUG_MODE) {
-      console.log(`[DEBUG] Rule not matched: ${rule.name}`);
-    }
   }
 
   return findings;
