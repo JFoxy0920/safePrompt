@@ -31,7 +31,6 @@ function hookPromptBox() {
         }
         
         const findings = detectSensitive(text);
-        console.log("Findings:", findings);
         if (findings.length > 0) {
             showWarning(inputBox, findings);
         } else {
