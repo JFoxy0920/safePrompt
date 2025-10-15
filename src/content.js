@@ -24,20 +24,13 @@ function hookPromptBox() {
         return;
     }
 
-    inputBox.addEventListener('input', () => {
+    ['input', 'change', 'keyup'].forEach(event => {
+      inputBox.addEventListener(event, () => {
         const text = inputBox.value;
-
-        if (!detectSensitive) {
-            console.error("Detector function is not yet loaded!");
-            return;
-        }
-        
+        if (!detectSensitive) return;
         const findings = detectSensitive(text);
-        if (findings.length > 0) {
-            showWarning(inputBox, findings);
-        } else {
-            clearWarning(inputBox);
-        }
+        findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
+      });
     });
     console.log("Prompt box hooked successfully.");
 }
