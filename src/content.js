@@ -1,4 +1,3 @@
-//I know this textarea works, I changed it and the whole thing broke
 const inputSelector = 'textarea';
 
 let detectSensitive;
@@ -39,6 +38,10 @@ function hookPromptBox() {
           findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
     });
     console.log("Prompt box hooked successfully.");
+    const id = inputBox.id;
+    const className = inputBox.className;
+    console.log("Textarea ID:", id);
+    console.log("Textarea class:", className);
 }
 
 function addDebugToggle() {
