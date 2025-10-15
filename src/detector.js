@@ -12,5 +12,6 @@ export function detectSensitive(text) {
       findings.push(rule.name);
     }
   }
+  console.log("Testing text:", text);
   return findings;
 }
