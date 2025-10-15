@@ -6,6 +6,7 @@ async function loadModuleAndRun() {
     try {
         const detectorModule = await import(chrome.runtime.getURL('src/detector.js'));
         detectSensitive = detectorModule.detectSensitive; 
+        console.log("Detector module loaded:", detectorModule);
         
         hookPromptBox();
 
