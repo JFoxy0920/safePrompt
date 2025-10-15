@@ -1,4 +1,4 @@
-const inputSelector = 'prompt-textarea';
+const inputSelector = 'textarea';
 
 let detectSensitive;
 
