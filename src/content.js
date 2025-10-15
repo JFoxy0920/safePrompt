@@ -6,7 +6,7 @@ async function loadModuleAndRun() {
     window.detectSensitive = detectorModule.detectSensitive;
 
     hookEditableElement();
-    addDebugToggle();
+    //addDebugToggle();
   } catch (error) {
     console.error("SafePrompt Error: Failed to load detector module:", error);
   }
