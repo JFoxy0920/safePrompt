@@ -47,7 +47,7 @@ function hookEditableElement() {
       return;
     }
 
-    const findings = detectSensitive(text);
+    const findings = window.detectSensitive(text);
     if (DEBUG_MODE) console.log(`[DEBUG] Findings:`, findings);
 
     findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
