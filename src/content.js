@@ -9,10 +9,10 @@ document.querySelectorAll('textarea, input[type="text"], input[type="search"]').
     value: el.value
   });
 });
-let detectSensitive;
+const inputSelector = 'textarea[placeholder="Ask Anything"]';
 
 async function loadModuleAndRun() {
-    const DEBUG_MODE = true; // Set to false in production
+    window.DEBUG_MODE = true; // Set to false in production
     try {
         const detectorModule = await import(chrome.runtime.getURL('src/detector.js'));
         console.log("Loaded detector module:", detectorModule);
@@ -29,6 +29,7 @@ async function loadModuleAndRun() {
 }
 
 function hookPromptBox() {
+    const inputBox = document.querySelector(inputSelector);
     if (!inputBox) {
         console.warn("Input box not found yet. Retrying in 1 second...");
         setTimeout(hookPromptBox, 1000); 
@@ -45,7 +46,8 @@ function hookPromptBox() {
       if (DEBUG_MODE) console.log(`[DEBUG] Findings:`, findings);
           findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
     });
-    console.log("Prompt box hooked successfully.");
+    console.log("Hooked input box:", inputBox);
+    showDebugBanner("Prompt hooked");
     const id = inputBox.id;
     const className = inputBox.className;
     console.log("Textarea ID:", id);
