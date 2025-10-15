@@ -1,4 +1,4 @@
-# 🛡️ **SafePrompt**
+# **SafePrompt**
 
 Local AI Prompt Security Extension
 
@@ -13,7 +13,7 @@ No storage of your input anywhere.
 
 **This is a privacy-first, open project built by a cybersecurity student with a passion for secure and ethical AI adoption.**
 
-## ✨ Core Principles
+##  Core Principles
 
 ### Local-Only Analysis:
 * All scanning happens in your browser — nothing leaves your device.
@@ -30,7 +30,7 @@ No storage of your input anywhere.
 ### Customizable:
 Users and teams can add their own detection rules (e.g., custom regex for internal code names or project terms).
 
-## ⚙️ How It Works
+##  How It Works
 
 ### When you open a page that includes an AI text box (like ChatGPT or Gemini):
 
@@ -46,7 +46,7 @@ The popup UI allows you to toggle protection or view what was detected.
 * Regex and pattern-based heuristics for detection
 * Chrome storage for local settings
 
-## 🧠 Detection Philosophy
+##  Detection Philosophy
 
 ### Rather than sending prompts to a server for classification, SafePrompt uses:
 
@@ -56,7 +56,7 @@ The popup UI allows you to toggle protection or view what was detected.
 
 **This makes SafePrompt fast, private, and trustworthy.**
 
-## 🔐 Security Model
+##  Security Model
 * Component	Trust Model	Data Flow
 * Popup UI	Fully local	Reads/writes only extension storage
 * Content Script	Runs in user browser	Monitors and analyzes local DOM
@@ -75,7 +75,7 @@ SafePrompt’s manifest.json uses strict permissions and content_security_policy
 
 **No external scripts. No fetch requests. No hidden analytics.**
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 HTML/CSS/JS (Manifest V3)
 
@@ -87,7 +87,7 @@ Popup UI built with simple HTML/CSS
 
 **No frameworks for maximal transparency**
 
-## 🧩 Features (Current + Planned)
+##  Features (Current + Planned)
 Status -> Feature\
  ✅  Popup toggle (Enable/Disable protection)\
  ✅  Local storage of user settings\
@@ -97,7 +97,7 @@ Status -> Feature\
  🚧  Export/import of detection settings\
  🚧  Optional in-browser local AI classifier (WASM or quantized LLM)\
 
-## 🧱 Installation (Developer Mode)
+## Installation (Developer Mode)
 
 Clone the repo:
 ```
@@ -115,19 +115,19 @@ Select the project folder
 
 Click the SafePrompt icon → test your popup
 
-## 🧑‍💻 About the Creator
+##  About the Creator
 
 SafePrompt was built by a Cybersecurity student at RIT who’s passionate about ethical AI, privacy, and secure software design.
 This project combines the worlds of AI, browser security, and human-centered design — empowering users to stay safe in an increasingly AI-driven internet.
 
 (No personal data or contact info included for privacy reasons.)
 
-## 🧩 License
+##  License
 
 MIT License — use, fork, and build on it freely.
 If you create a fork, please preserve the transparency and privacy-first principles.
 
-## 🧭 Vision
+## Vision
 
 The long-term goal is to make SafePrompt the “seatbelt” of AI chat —
 always on, invisible until needed, and protecting users without slowing them down.
