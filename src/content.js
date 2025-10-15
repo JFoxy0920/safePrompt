@@ -4,6 +4,7 @@ const inputSelector = 'textarea';
 let detectSensitive;
 
 async function loadModuleAndRun() {
+    const DEBUG_MODE = true; // Set to false in production
     try {
         const detectorModule = await import(chrome.runtime.getURL('src/detector.js'));
         console.log("Loaded detector module:", detectorModule);
