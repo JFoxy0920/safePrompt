@@ -1,4 +1,6 @@
-const inputSelector = 'textarea';
+const host = document.querySelector('some-host-element');
+const shadowRoot = host?.shadowRoot;
+const inputBox = shadowRoot?.querySelector('textarea');
 
 let detectSensitive;
 
@@ -20,7 +22,6 @@ async function loadModuleAndRun() {
 }
 
 function hookPromptBox() {
-    const inputBox = document.querySelector(inputSelector);
     if (!inputBox) {
         console.warn("Input box not found yet. Retrying in 1 second...");
         setTimeout(hookPromptBox, 1000); 
@@ -40,6 +41,7 @@ function hookPromptBox() {
     console.log("Prompt box hooked successfully.");
     const id = inputBox.id;
     const className = inputBox.className;
+    const 
     console.log("Textarea ID:", id);
     console.log("Textarea class:", className);
 }
