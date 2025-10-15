@@ -1,3 +1,4 @@
+//I know this textarea works, I changed it and the whole thing broke
 const inputSelector = 'textarea';
 
 let detectSensitive;
