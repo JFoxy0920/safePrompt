@@ -1,58 +1,63 @@
-const inputSelector = 'textarea[placeholder="Ask Anything"]';
-document.querySelectorAll('textarea, input[type="text"], input[type="search"]')
-document.querySelectorAll('textarea, input[type="text"], input[type="search"]').forEach((el, i) => {
-  console.log(`Input ${i}:`, {
-    tag: el.tagName,
-    name: el.getAttribute('name'),
-    id: el.id,
-    class: el.className,
-    placeholder: el.getAttribute('placeholder'),
-    value: el.value
-  });
-});
-
-
 async function loadModuleAndRun() {
-    window.DEBUG_MODE = true; // Set to false in production
-    try {
-        const detectorModule = await import(chrome.runtime.getURL('src/detector.js'));
-        console.log("Loaded detector module:", detectorModule);
-        const { detectSensitive } = await import(chrome.runtime.getURL('src/detector.js'));
-        window.detectSensitive = detectorModule.detectSensitive;
-        console.log("Detector module loaded:", detectorModule);
-        
-        hookPromptBox();
-        addDebugToggle();
+  window.DEBUG_MODE = true; // Set to false in production
+  try {
+    const detectorModule = await import(chrome.runtime.getURL('src/detector.js'));
+    console.log("Loaded detector module:", detectorModule);
+    window.detectSensitive = detectorModule.detectSensitive;
 
-    } catch (error) {
-        console.error("SafePrompt Error: Failed to load detector module:", error);
-    }
+    hookEditableElement();
+    addDebugToggle();
+  } catch (error) {
+    console.error("SafePrompt Error: Failed to load detector module:", error);
+  }
 }
 
-function hookPromptBox() {
-    const inputBox = document.querySelector(inputSelector);
-    if (!inputBox) {
-        console.warn("Input box not found yet. Retrying in 1 second...");
-        setTimeout(hookPromptBox, 1000); 
-        return;
+function findEditableElement() {
+  const candidates = Array.from(document.querySelectorAll('textarea, input[type="text"], input[type="search"], [contenteditable="true"]'));
+
+  for (const el of candidates) {
+    const isVisible = el.offsetParent !== null;
+    const isEditable = el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.isContentEditable;
+
+    if (isVisible && isEditable) {
+      return el;
+    }
+  }
+
+  return null;
+}
+
+function hookEditableElement() {
+  const inputBox = findEditableElement();
+
+  if (!inputBox) {
+    console.warn("Editable input not found yet. Retrying in 1 second...");
+    setTimeout(hookEditableElement, 1000);
+    return;
+  }
+
+  const getText = () => inputBox.isContentEditable ? inputBox.innerText : inputBox.value;
+
+  inputBox.addEventListener('input', () => {
+    const text = getText();
+    if (DEBUG_MODE) console.log(`[DEBUG] Input text: "${text}"`);
+
+    if (!detectSensitive) {
+      console.error("Detector function is not yet loaded!");
+      return;
     }
 
-    inputBox.addEventListener('input', () => {
-        const text = inputBox.value;
-        if (DEBUG_MODE) console.log(`[DEBUG] Input text: "${text}"`);
-            if (!detectSensitive) {
-                console.error("Detector function is not yet loaded!");
-                    return;}
-      const findings = detectSensitive(text);
-      if (DEBUG_MODE) console.log(`[DEBUG] Findings:`, findings);
-          findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
-    });
-    console.log("Hooked input box:", inputBox);
-    showDebugBanner("Prompt hooked");
-    const id = inputBox.id;
-    const className = inputBox.className;
-    console.log("Textarea ID:", id);
-    console.log("Textarea class:", className);
+    const findings = detectSensitive(text);
+    if (DEBUG_MODE) console.log(`[DEBUG] Findings:`, findings);
+
+    findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
+  });
+
+  console.log("Hooked editable element:", inputBox);
+  showDebugBanner("Editable input hooked");
+
+  console.log("Element ID:", inputBox.id);
+  console.log("Element class:", inputBox.className);
 }
 
 function addDebugToggle() {
@@ -86,17 +91,18 @@ function addDebugToggle() {
 }
 
 function showWarning(inputElement, findings) {
-    const parent = inputElement.parentNode; 
-    let banner = document.getElementById('safeprompt-banner');
-    
-    if (!banner) {
-        banner = document.createElement('div');
-        banner.id = 'safeprompt-banner';
-        banner.style.cssText = "background: #d32f2f; color: white; padding: 6px 12px; border-radius: 4px; margin-top: 4px; font-weight: bold; font-size: 13px; z-index: 9999;";
-        parent.insertBefore(banner, inputElement.nextSibling);
-    }
-    console.log("Errors:", findings);
-    banner.textContent = `⚠️ LEAK ALERT: ${findings.length} issue(s) detected. Details: ${findings.join(' | ')}`;
+  const parent = inputElement.parentNode;
+  let banner = document.getElementById('safeprompt-banner');
+
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'safeprompt-banner';
+    banner.style.cssText = "background: #d32f2f; color: white; padding: 6px 12px; border-radius: 4px; margin-top: 4px; font-weight: bold; font-size: 13px; z-index: 9999;";
+    parent.insertBefore(banner, inputElement.nextSibling);
+  }
+
+  console.log("Errors:", findings);
+  banner.textContent = `⚠️ LEAK ALERT: ${findings.length} issue(s) detected. Details: ${findings.join(' | ')}`;
 }
 
 function showDebugBanner(message) {
@@ -113,10 +119,10 @@ function showDebugBanner(message) {
 }
 
 function clearWarning(inputElement) {
-    const banner = document.getElementById('safeprompt-banner');
-    if (banner) {
-        banner.remove();
-    }
+  const banner = document.getElementById('safeprompt-banner');
+  if (banner) {
+    banner.remove();
+  }
 }
 
 loadModuleAndRun();
