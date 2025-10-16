@@ -27,7 +27,7 @@
   "32": "icons/icon32.png",
   "48": "icons/icon48.png",
   "128": "icons/icon128.png"
-}
+},
   "action": {
     "default_popup": "ui/popup.html",
     "default_icon": "icons/safeprompt_logo.png"
