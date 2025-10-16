@@ -28,36 +28,37 @@ function findEditableElement() {
 }
 
 function hookEditableElement() {
-  const inputBox = findEditableElement();
+  const observer = new MutationObserver(() => {
+    const inputBox = findEditableElement();
+    if (!inputBox || inputBox.dataset.hooked === "true") return;
 
-  if (!inputBox) {
-    console.warn("Editable input not found yet. Retrying in 1 second...");
-    setTimeout(hookEditableElement, 1000);
-    return;
-  }
+    inputBox.dataset.hooked = "true"; // Prevent double-hooking
 
-  const getText = () => inputBox.isContentEditable ? inputBox.innerText : inputBox.value;
+    const getText = () => inputBox.isContentEditable ? inputBox.innerText : inputBox.value;
 
-  inputBox.addEventListener('input', () => {
-    const text = getText();
-    if (DEBUG_MODE) console.log(`[DEBUG] Input text: "${text}"`);
+    inputBox.addEventListener('input', () => {
+      const text = getText();
+      if (DEBUG_MODE) console.log(`[DEBUG] Input text: "${text}"`);
 
-    if (!detectSensitive) {
-      console.error("Detector function is not yet loaded!");
-      return;
-    }
+      if (!window.detectSensitive) {
+        console.error("Detector function is not yet loaded!");
+        return;
+      }
 
-    const findings = window.detectSensitive(text);
-    if (DEBUG_MODE) console.log(`[DEBUG] Findings:`, findings);
+      const findings = window.detectSensitive(text);
+      if (DEBUG_MODE) console.log(`[DEBUG] Findings:`, findings);
 
-    findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
+      findings.length > 0 ? showWarning(inputBox, findings) : clearWarning(inputBox);
+    });
+
+    console.log("Hooked editable element:", inputBox);
+    showDebugBanner("Editable input hooked");
   });
 
-  console.log("Hooked editable element:", inputBox);
-  showDebugBanner("Editable input hooked");
-
-  console.log("Element ID:", inputBox.id);
-  console.log("Element class:", inputBox.className);
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 }
 
 function addDebugToggle() {
