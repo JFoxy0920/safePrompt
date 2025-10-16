@@ -92,6 +92,7 @@ Status -> Feature\
  ✅  Popup toggle (Enable/Disable protection)\
  ✅  Local storage of user settings\
  ✅  Content script detection pipeline\
+ ✅  Debug mode\
  🚧  Custom detection rules (user-defined regex)\
  🚧  Redaction preview before sending\
  🚧  Optional in-browser local AI classifier (WASM or quantized LLM)
